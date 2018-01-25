@@ -55,6 +55,9 @@ server {
     {% if site_use_ssl %}
     ssl_certificate {{ nginx_site_ssl_certificate }};
     ssl_certificate_key {{ nginx_site_ssl_certificate_key }};
+    {% if nginx_site_ssl_dhparam -%}
+    ssl_dhparam {{ nginx_site_ssl_dhparam }};
+    {%- endif %}
     ssl_protocols {{ nginx_site_ssl_protocols | join(' ') }};
     ssl_ciphers '{{ nginx_site_ssl_ciphers | join(':') }}';
     ssl_prefer_server_ciphers on;
