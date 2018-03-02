@@ -22,13 +22,13 @@
 - name: Install site for Letsencrypt
   template:
     src: site-letsencrypt.conf
-    dest: '/etc/nginx/sites-available/{{ nginx_site_name }}-letsencrypt.conf'
+    dest: '{{ localbase }}/etc/nginx/sites-available/{{ nginx_site_name }}-letsencrypt.conf'
   when: not stat_certificate_file.stat.exists
 
 - name: Enable site for Letsencrypt
   file:
-    src: '/etc/nginx/sites-available/{{ nginx_site_name }}-letsencrypt.conf'
-    dest: '/etc/nginx/sites-enabled/50-{{ nginx_site_name }}.conf'
+    src: '{{ localbase }}/etc/nginx/sites-available/{{ nginx_site_name }}-letsencrypt.conf'
+    dest: '{{ localbase }}/etc/nginx/sites-enabled/50-{{ nginx_site_name }}.conf'
     state: link
   when: not stat_certificate_file.stat.exists
 
@@ -53,13 +53,13 @@
 
 - name: Delete link for Letsencrypt site
   file:
-    path: '/etc/nginx/sites-enabled/50-{{ nginx_site_name }}.conf'
+    path: '{{ localbase }}/etc/nginx/sites-enabled/50-{{ nginx_site_name }}.conf'
     state: absent
   when: not stat_certificate_file.stat.exists
 
 - name: Delete file for Letsencrypt site
   file:
-    path: '/etc/nginx/sites-available/{{ nginx_site_name }}-letsencrypt.conf'
+    path: '{{ localbase }}/etc/nginx/sites-available/{{ nginx_site_name }}-letsencrypt.conf'
     state: absent
   when: not stat_certificate_file.stat.exists
 

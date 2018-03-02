@@ -76,3 +76,6 @@ nginx_site_index_filenames: !!null
 
 nginx_site_location_rules: {}
 nginx_site_tuning: {}
+
+freebsd_pkg_repository: 'FreeBSD'
+localbase: '{% if ansible_os_family == "FreeBSD" %}/usr/local{% else %}""{% endif %}'

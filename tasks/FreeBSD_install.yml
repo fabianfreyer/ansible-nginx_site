@@ -1,0 +1,7 @@
+---
+
+- name: install nginx
+  pkgng:
+    name: nginx
+    state: present
+    pkgsite: '{{ freebsd_pkg_repository }}'

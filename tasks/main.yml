@@ -3,6 +3,9 @@
 - include: Debian_install.yml
   when: ansible_os_family == 'Debian'
 
+- include: FreeBSD_install.yml
+  when: ansible_os_family == 'FreeBSD'
+
 - name: Enable nginx
   service:
     name: nginx
